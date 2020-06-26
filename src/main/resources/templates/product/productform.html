@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Survey</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+    <link rel="stylesheet" th:href="@{/static/theme.css}"
+          href="../static/theme.css"/>
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+
+    <script>
+        $(" #formControlSelect3 " ).ready(function() {
+                $('#formControlSelectConditionalDiv').hide();
+        });
+    </script>
+
+</head>
+<body>
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/welcome">Personality Test</a>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav">
+                <li ><a href="/product/list">Results</a></li>
+                <li class="active"><a href="/product/new">New survey</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+
+<div class="container">
+
+    <h1>Personality Survey</h1>
+    <h4>Welcome to survey page ! It is optional to fill the personal information fields before start survey.You can solve survey anonymously if you want.</h4>
+    <div>
+        <form class="form-horizontal" th:object="${productForm}" th:action="@{/product}" method="post">
+
+            <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
+                <p th:text="#{form.hasErrors}">Error Message</p>
+            </div>
+
+            <input type="hidden" th:field="*{id}"/>
+
+            <div class="form-group" th:class="${#fields.hasErrors('name')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">Name :</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{name}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('name')}" th:text="${err}" />
+                       </ul>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group" th:class="${#fields.hasErrors('surname')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">Surname :</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{surname}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('surname')}" th:text="${err}" />
+                       </ul>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group" th:class="${#fields.hasErrors('age')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">Age:</label>
+                <div class="col-sm-10">
+                    <input type="number" min="0" max="100" step="1" class="form-control" th:field="*{age}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('age')}" th:text="${err}" />
+                       </ul>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group" th:class="${#fields.hasErrors('mail')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">Email:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{mail}" th:errorclass="has-error"/>
+
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('mail')}" th:text="${err}" />
+                       </ul>
+                    </span>
+                </div>
+            </div>
+
+
+            <div class="container">
+                <div>
+                        <h2>Questions</h2>
+                        <h4>Please select answer for each questions</h4>
+                        <br /><br />
+
+
+
+
+                        <h3>Hard Fact Category</h3>
+                        <br /><br />
+                        <h4> Q1 What is your gender ?</h4>
+
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect1" th:field="${productForm.hardFactCategoryList[0]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="Male"></option>
+                                <option th:value="2" th:text="Female"></option>
+                                <option th:value="3" th:text="Other"></option>
+                            </select>
+                        </div>
+                        <!--div class="form-group">
+
+                            <div class="col-sm-10">
+                                <input type="number" min="0" max="10" step="1" class="form-control" th:field="${productForm.points[0]}"/>
+
+                            </div>
+                        </div-->
+
+                        <br /><br />
+                        <div class="form-group">
+                        <h4> Q2 How important is the gender of your partner ?</h4>
+                            <select class="form-control" id="formControlSelect2" th:field="${productForm.hardFactCategoryList[1]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text=" 'Not'+' Important' "></option>
+                                <option th:value="2" th:text="Important"></option>
+                                <option th:value="3" th:text="'Very'+' Important'"></option>
+                            </select>
+                        </div>
+                        <!--div class="form-group">
+                            <div class="col-sm-10">
+                                <input type="number" min="0" max="10" step="1" class="form-control" th:field="${productForm.points[1]}"/>
+
+                            </div>
+                        </div-->
+                        <br /><br/>
+
+
+                        <h4> Q3 How important is the age of your partner to you ?</h4>
+                        <div class="form-group">
+                            <label for="formControlSelect3"></label>
+                            <select class="form-control" id="formControlSelect3" th:field="${productForm.hardFactCategoryList[2]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text=" 'Not'+' Important' "></option>
+                                <option th:value="2" th:text="Important"></option>
+                                <option th:value="3" th:text="'Very'+' Important'"></option>
+                            </select>
+                        </div>
+
+
+                        <div class="form-group" id="formControlSelectConditionalDiv">
+                            <h4> Q3.1 What age should your potential partner be ?</h4>
+                            <label for="formControlSelectConditional">Please Select Age between 18 and 140</label>
+                            <input type="range" min="18" max="140" step="1" class="form-control" id="formControlSelectConditional" th:field="${productForm.hardFactCategoryList[3]}"/>
+                            <span class="font-weight-bold text-primary ml-2 mt-1 valueSpan"></span>
+
+                        </div>
+                        <!--div class="form-group">
+                            <div class="col-sm-10">
+                                <input type="number" min="0" max="10" step="1" class="form-control" th:field="${productForm.points[2]}"/>
+
+                            </div>
+                        </div-->
+                        <br /><br />
+
+                        <h4> Q4 Do any children under the age of 18 live with you ?</h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect4" th:field="${productForm.hardFactCategoryList[4]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="Yes"></option>
+                                <option th:value="2" th:text="Sometimes"></option>
+                                <option th:value="3" th:text="No"></option>
+                            </select>
+                        </div>
+                        <br /><br />
+
+                        <h3> Lifestyle Category</h3>
+
+                        <br /><br />
+
+                        <h4> Q5 How should your potential partner respond to this question ?</h4>
+                            <div class="form-group">
+                                <select class="form-control" id="formControlSelect5" th:field="${productForm.lifestyleCategoryList[0]}">
+                                    <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                    <option th:value="1" th:text="Yes"></option>
+                                    <option th:value="2" th:text="Sometimes"></option>
+                                    <option th:value="3" th:text="No"></option>
+                                </select>
+                            </div>
+
+                        <br /><br />
+
+
+
+
+                        <h4> Q6 Could you imagine having children with your potential partner ?</h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect6" th:field="${productForm.lifestyleCategoryList[1]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="Yes"></option>
+                                <option th:value="2" th:text="Maybe"></option>
+                                <option th:value="3" th:text="No"></option>
+                            </select>
+                        </div>
+                        <br /><br />
+
+                        <h4> Q7 How should your potential partner respond to this question ?</h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect7" th:field="${productForm.lifestyleCategoryList[2]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="Yes"></option>
+                                <option th:value="2" th:text="Maybe"></option>
+                                <option th:value="3" th:text="No"></option>
+                            </select>
+                        </div>
+                        <br /><br />
+
+                        <h4> Q8 What is your marital status?</h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect8" th:field="${productForm.lifestyleCategoryList[3]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="'Never' + ' Married'"></option>
+                                <option th:value="2" th:text="Seperated"></option>
+                                <option th:value="3" th:text="Divorced"></option>
+                                <option th:value="4" th:text="Widowed"></option>
+                            </select>
+                        </div>
+                        <br /><br />
+
+                        <h4> Q9 How often do your drink alcohol ? </h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect9" th:field="${productForm.lifestyleCategoryList[4]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="Never"></option>
+                                <option th:value="2" th:text="'Once' + ' or' + ' twice' +' a' +' year'"></option>
+                                <option th:value="3" th:text="'Once' + ' or' + ' twice' +' a' +' month'"></option>
+                                <option th:value="4" th:text="'Once' + ' or' + ' twice' +' a' +' week'"></option>
+                                <option th:value="5" th:text="'I' + ' am' + ' drinking' +' my' +' 3rd'+ ' mojito' + ' now' +' and' +' it'+ ' is' + ' only' +' 11' +'am'"></option>
+                            </select>
+                        </div>
+                        <br /><br />
+
+
+                        <h4> Q10 How often do you smoke ?</h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect10" th:field="${productForm.lifestyleCategoryList[5]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="Never"></option>
+                                <option th:value="2" th:text="'Once' + ' or' + ' twice' + ' a' + ' year'"></option>
+                                <option th:value="3" th:text="Socially"></option>
+                                <option th:value="4" th:text="Frequently"></option>
+                            </select>
+                        </div>
+
+                        <br /><br />
+                        <h4> Q11 What is your attitude towards drugs ?</h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect11" th:field="${productForm.lifestyleCategoryList[6]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="Never"></option>
+                                <option th:value="2" th:text="'I' + ' am' + ' completely' +' opposed' "></option>
+                                <option th:value="3" th:text="'I' + ' have' + ' been' +' know' +' to' +' dabble'"></option>
+                                <option th:value="4" th:text="'Drugs' + ' enrich' + ' my' +' life'"></option>
+                            </select>
+                        </div>
+                        <br /><br />
+
+
+                        <h4> Q12 You are looking for... ? </h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect12" th:field="${productForm.lifestyleCategoryList[7]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="Never"></option>
+                                <option th:value="2" th:text="'Friendship' "></option>
+                                <option th:value="3" th:text="'A' + ' hot' + ' date' "></option>
+                                <option th:value="4" th:text="'A' + ' short' + ' term' +' relationship'"></option>
+                                <option th:value="5" th:text="'A' + ' long' + ' term' +' relationship'"></option>
+                            </select>
+                        </div>
+                        <br /><br />
+
+                        <h4> Q13 Would you like to get married ?</h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect13" th:field="${productForm.lifestyleCategoryList[8]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="Yes"></option>
+                                <option th:value="2" th:text="Probably"></option>
+                                <option th:value="3" th:text="Eventually"></option>
+                                <option th:value="4" th:text="No"></option>
+                            </select>
+                        </div>
+                        <br /><br />
+
+                        <h4> Q14 What is your ideal living arrangement ?</h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect14" th:field="${productForm.lifestyleCategoryList[9]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="Cohabitation"></option>
+                                <option th:value="2" th:text="'Seperate' + ' flat/room' + ' in'  + ' the' + ' same' + ' building' "></option>
+                                <option th:value="3" th:text="'Seperate' + ' flats' + ' in'  + ' the' + ' same' + ' area' "></option>
+                                <option th:value="4" th:text="'Weekend' + ' relationship'"></option>
+                                <option th:value="5" th:text="'Long' + ' distance' + 'relationship'"></option>
+                            </select>
+                        </div>
+                        <br /><br />
+
+
+                        <h3> Introversion Category</h3>
+                        <br /><br />
+                        <h4> Q15 Do you enjoy spending time alone ?</h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect15" th:field="${productForm.introversionCategoryList[0]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="'Most' + ' of' + ' the' + ' time'"></option>
+                                <option th:value="2" th:text="Often"></option>
+                                <option th:value="3" th:text="Sometimes"></option>
+                                <option th:value="4" th:text="Rarely"></option>
+                                <option th:value="5" th:text="'Not' + ' at' + ' all'"></option>
+                            </select>
+                        </div>
+                        <br /><br />
+
+                        <h4> Q16 When you're alone, do you get lonely quickly ?</h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect16" th:field="${productForm.introversionCategoryList[1]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="'Most' + ' of' + ' the' + ' time'"></option>
+                                <option th:value="2" th:text="Often"></option>
+                                <option th:value="3" th:text="Sometimes"></option>
+                                <option th:value="4" th:text="Rarely"></option>
+                                <option th:value="5" th:text="'Not' + ' at' + ' all'"></option>
+                            </select>
+                        </div>
+                        <br /><br />
+
+                        <h4> Q17 Do you enjoy going on holiday by yourself ?</h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect17" th:field="${productForm.introversionCategoryList[2]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="'Most' + ' of' + ' the' + ' time'"></option>
+                                <option th:value="2" th:text="Often"></option>
+                                <option th:value="3" th:text="Sometimes"></option>
+                                <option th:value="4" th:text="Rarely"></option>
+                                <option th:value="5" th:text="'Not' + ' at' + ' all'"></option>
+                            </select>
+                        </div>
+
+                        <br /><br />
+                        <h4> Q18 I consciously take \"me time\" ?
+                        </h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect18" th:field="${productForm.introversionCategoryList[3]}">
+
+                            <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                            <option th:value="1" th:text="'Most' + ' of' + ' the' + ' time'"></option>
+                            <option th:value="2" th:text="Often"></option>
+                            <option th:value="3" th:text="Sometimes"></option>
+                            <option th:value="4" th:text="Rarely"></option>
+                            <option th:value="5" th:text="'Not' + ' at' + ' all'"></option>
+                            </select>
+
+                        </div>
+                        <br /><br />
+
+                        <h4> Q19 Should one keep little secrets from one's partner ?</h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect19" th:field="${productForm.introversionCategoryList[4]}">
+
+                            <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                            <option th:value="1" th:text="'Most' + ' of' + ' the' + ' time'"></option>
+                            <option th:value="2" th:text="Often"></option>
+                            <option th:value="3" th:text="Sometimes"></option>
+                            <option th:value="4" th:text="Rarely"></option>
+                            <option th:value="5" th:text="'Not' + ' at' + ' all'"></option>
+                            </select>
+                        </div>
+                        <br /><br />
+                        <h3> Passion Category</h3>
+                        <br /><br />
+
+                        <h4> Q20 How often do you think about sex? </h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect20" th:field="${productForm.passionCategoryList[0]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="'A' + ' few' + ' times' +' a' +' day'"></option>
+                                <option th:value="2" th:text="Daily"></option>
+                                <option th:value="3" th:text="'A' + ' few' + ' times' +' a' +' week'"></option>
+                                <option th:value="4" th:text="'A' + ' few' + ' times' +' a' +' month'"></option>
+                                <option th:value="5" th:text="Rarely"></option>
+                            </select>
+                        </div>
+                        <br /><br />
+
+                        <h4> Q21 If you were alone on a desert island, how long would you last before pleasuring yourself ? </h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect21" th:field="${productForm.passionCategoryList[1]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="'Less' + ' than' +' a' +' day'"></option>
+                                <option th:value="2" th:text="'One' + ' day'"></option>
+                                <option th:value="3" th:text="'One' + ' week'"></option>
+                                <option th:value="4" th:text="'One' + ' month'"></option>
+                                <option th:value="5" th:text="'I' + ' would' + ' never' +' do' +' something' +' like' +' that'"></option>
+                            </select>
+                        </div>
+                        <br /><br />
+
+                        <h4> Q22 How often would you like to have sex with your prospective partner ? </h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect22" th:field="${productForm.passionCategoryList[2]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="'Every' + ' day' "></option>
+                                <option th:value="2" th:text="'A' + ' few'+ ' times'+ ' a'+ ' week'"></option>
+                                <option th:value="3" th:text="'Once' + ' a'+ ' week'"></option>
+                                <option th:value="4" th:text="'Every' + ' two' + ' weeks'"></option>
+                                <option th:value="5" th:text="Infrequently"></option>
+                                <option th:value="6" th:text="Rarely"></option>
+
+                            </select>
+                        </div>
+                        <br /><br />
+
+                        <h4> Q23 Do you like trying out new things in bed and experimenting ? </h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect23" th:field="${productForm.passionCategoryList[3]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="'Yes' + ' ,definitely!' "></option>
+                                <option th:value="2" th:text="'Now' + ' and'+ ' then'+ ' -why'+ ' not?'"></option>
+                                <option th:value="3" th:text="'I' + ' would'+ ' give'+ ' a'+ ' try'"></option>
+                                <option th:value="4" th:text="'I' + ' do' + ' not'+ ' know'"></option>
+                                <option th:value="4" th:text="'Absolutely'  + ' not' "></option>
+
+                            </select>
+                        </div>
+                        <br /><br />
+
+                        <h4> Q24 I can enjoy sex without love ? </h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect24" th:field="${productForm.passionCategoryList[4]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="Always"></option>
+                                <option th:value="2" th:text="Often"></option>
+                                <option th:value="3" th:text="Sometimes"></option>
+                                <option th:value="4" th:text="Rarely"></option>
+                                <option th:value="5" th:text="Never"></option>
+                            </select>
+                        </div>
+                        <br /><br />
+
+
+                        <h4> Q25 For me, a stable relationship is a prerequisite for really good sex ? </h4>
+                        <div class="form-group">
+                            <select class="form-control" id="formControlSelect25" th:field="${productForm.passionCategoryList[5]}">
+                                <option th:value="0" hidden="true" th:text="'Please' + ' Select'"></option>
+                                <option th:value="1" th:text="Always"></option>
+                                <option th:value="2" th:text="Often"></option>
+                                <option th:value="3" th:text="Sometimes"></option>
+                                <option th:value="4" th:text="Rarely"></option>
+                                <option th:value="5" th:text="Never"></option>
+                            </select>
+                        </div>
+                        <br /><br />
+
+
+
+
+
+                </div>
+            </div>
+            <div class="row">
+                <button type="submit" class="btn btn-default">Submit</button>
+            </div>
+        </form>
+        <script type="text/javascript" src="conditionalSelect.js"></script>
+        <script>
+            $(" #formControlSelect3 " ).on('change',function() {
+
+                if ($(this).val() == "3") {
+                    $('#formControlSelectConditionalDiv').show();
+                } else {
+                    $('#formControlSelectConditionalDiv').hide();
+                }
+
+            });
+        </script>
+
+        <script>
+            $(document).ready(function() {
+
+                const $valueSpan = $('.valueSpan');
+                const $value = $('#formControlSelectConditional');
+                $valueSpan.html($value.val());
+                $value.on('input change', () => {
+
+                    $valueSpan.html($value.val());
+            });
+            });
+        </script>
+
+
+    </div>
+</div>
+
+</body>
+</html>

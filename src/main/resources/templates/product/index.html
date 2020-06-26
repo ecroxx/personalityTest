@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Survey</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+    <link rel="stylesheet" type="text/css"
+          href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"/>
+
+    <link rel="stylesheet" th:href="@{/static/theme.css}"
+          href="../static/theme.css"/>
+
+</head>
+<body>
+
+<nav class="navbar navbar-inverse">
+    <!-- nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/welcome">TellMe</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="/product/list">Results <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/product/new">Create new survey</a>
+                </li>
+            </ul>
+        </div>
+    </nav -->
+
+
+    <div class="container">
+        <div class="navbar-header">
+            <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item active"><a class="navbar-brand " href="/welcome">Personality Test</a></li>
+            </ul>
+        </div>
+        <div id="navbar" class="collapse navbar-collapse">
+            <ul class="nav navbar-nav mr-auto">
+                <li class="nav-item "><a class="nav-link" href="/product/list">Results</a></li>
+                <li class="nav-item "><a class="nav-link" href="/product/new">New survey</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="container">
+
+    <div class="starter-template">
+        <div class="col-sm-12">
+            <h1>Welcome to Personality Test Application ! </h1>
+            <br />
+            <br />
+            <br />
+            <h4>Personality Test Application aims to detect characteristic of person.It consists of 20 questions in four main topics :</h4>
+            <br />
+            <h4>- Hard Fact Category</h4>
+            <h4>- Lifestyle Category</h4>
+            <h4>- Introversion Category</h4>
+            <h4>- Passion Category</h4>
+            <br />
+            <h4>based on given answers, it aims to give average score of each person, each subcategory and also total score of community. Enjoy !</h4>
+            <br /><br />
+            <h4>Lets start !</h4>
+            <br />
+            <a class="btn btn-default" href="/product/new">Start new survey</a>
+            <br />
+            <!--form method="post" action="/product/new">
+                <table class="table table-hover">
+
+                    <!--tr>
+                        <td>Give survey id: <input type="text" name="addQuestionspage" /></td>
+                    </tr>
+
+                </table>
+                <button type="submit" class="btn btn-default">Add questions to survey</button>
+            </form-->
+
+
+            <form method="post" action="/product/list">
+                <table class="table table-hover">
+
+                    <!--tr>
+                        <td>Give survey id: <input type="text" name="AnswerId" /></td>
+                    </tr-->
+
+                </table>
+                <br />
+                <h4>Lets check current score !</h4>
+                <br />
+                <button type="submit" class="btn btn-default">See Results</button>
+            </form>
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>
