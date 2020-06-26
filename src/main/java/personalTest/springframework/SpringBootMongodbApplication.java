@@ -10,9 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringBootMongodbApplication {
 
 	public static void main(String[] args) {
-		//Questions cankaya = new Questions();
-
-
 		SpringApplication.run(SpringBootMongodbApplication.class, args);
 	}
 }

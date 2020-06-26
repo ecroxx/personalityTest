@@ -21,7 +21,6 @@ public class Product {
     private String surname;
     private BigDecimal age;
     private String mail;
-    private Integer[] points = new Integer[20];
     @Transient
     private Integer[] hardFactCategoryList;
     @Transient
@@ -119,13 +118,7 @@ public class Product {
             this.mail = mail;
         }
 
-        public Integer[] getPoints() {
-             return points;
-        }
 
-         public void setPoints(Integer[] points) {
-            this.points = points;
-        }
 
     public ObjectId getId() {
         return _id;

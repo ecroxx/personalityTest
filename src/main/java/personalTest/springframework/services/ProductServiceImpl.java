@@ -19,7 +19,6 @@ public class ProductServiceImpl implements ProductService {
 
     private ProductRepository productRepository;
     private ProductFormToProduct productFormToProduct;
-   // private static float totalAvg=0;
 
     @Autowired
     public ProductServiceImpl(ProductRepository productRepository, ProductFormToProduct productFormToProduct) {

@@ -18,7 +18,6 @@ public class ProductToProductForm implements Converter<Product, ProductForm> {
         productForm.setSurname(product.getSurname());
         productForm.setAge(product.getAge());
         productForm.setMail(product.getMail());
-        productForm.setPoints(product.getPoints());
         productForm.setCategoryMap(product.getCategoryMap());
         productForm.setHardFactCategoryList(product.getHardFactCategoryList());
         productForm.setIntroversionCategoryList(product.getIntroversionCategoryList());

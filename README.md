@@ -26,9 +26,9 @@ spring.data.mongodb.database=test
 
 ---------SUMMARY-------------
 
-Project aims to collect user'personal data for survey. Users can fill a form by giving your personal information (name,surname,age,email) or anonymously.
+Project aims to collect user's personal data for survey. Users can fill a form by giving their personal information (name,surname,age,email) or anonymously.
 
-User data is collected Mongo DB Cloud Database. Questions and answers are mapped to integer values for increase speed of queries and each time while application is starting this mapped values are written to another document (Question) to perform aggregate querries on Mongo DB.
+User data is collected in Mongo DB Cloud Database. Questions and answers are mapped to integer values for increase speed of queries and each time while application is starting this mapped values are written to another document (Question) to perform aggregate querries on Mongo DB.
 
 Project consists of 3 main page which are 
 -Welcome Page

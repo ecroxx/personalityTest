@@ -9,7 +9,6 @@
 
     <link rel="stylesheet" th:href="@{/static/theme.css}"
           href="../static/theme.css"/>
-    <script src="conditionalSelect.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-inverse">
@@ -19,8 +18,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
-                <li class="active"><a href="/product/list">Results</a></li>
-                <li><a href="/product/new">New survey</a></li>
+                <li class="active"><a href="/user/list">Results</a></li>
+                <li><a href="/user/new">New survey</a></li>
             </ul>
         </div>
     </div>
@@ -37,7 +36,6 @@
                 <th>Surname</th>
                 <th>Age</th>
                 <th>Mail</th>
-                <!--th>Avarage</th-->
                 <th>List</th>
                 <th>Edit</th>
                 <th>Delete</th>
@@ -48,19 +46,14 @@
                 <td th:text="${product.surname}"></td>
                 <td th:text="${product.age}"></td>
                 <td th:text="${product.mail}"></td>
-                <!--td th:text="${product.getAvg()}"></td-->
-                <td><a th:href="${'/product/show/' + product.id.toHexString()}">View</a> </td>
-                <td><a th:href="${'/product/edit/' + product.id.toHexString()}">Edit</a> </td>
-                <td><a th:href="${'/product/delete/' + product.id.toHexString()}">Delete</a> </td>
+                <td><a th:href="${'/user/show/' + product.id.toHexString()}">View</a> </td>
+                <td><a th:href="${'/user/edit/' + product.id.toHexString()}">Edit</a> </td>
+                <td><a th:href="${'/user/delete/' + product.id.toHexString()}">Delete</a> </td>
             </tr>
 
         </table>
     </div>
-    <!--div class="row">
-        <div class="col-sm-3">
-            <a href="/product/new">New Survey</a>
-        </div>
-    </div-->
+
 </div>
 
 </body>

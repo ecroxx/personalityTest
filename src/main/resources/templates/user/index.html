@@ -14,25 +14,6 @@
 <body>
 
 <nav class="navbar navbar-inverse">
-    <!-- nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="/welcome">TellMe</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="/product/list">Results <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/product/new">Create new survey</a>
-                </li>
-            </ul>
-        </div>
-    </nav -->
-
-
     <div class="container">
         <div class="navbar-header">
             <ul class="nav navbar-nav mr-auto">
@@ -41,8 +22,8 @@
         </div>
         <div id="navbar" class="collapse navbar-collapse">
             <ul class="nav navbar-nav mr-auto">
-                <li class="nav-item "><a class="nav-link" href="/product/list">Results</a></li>
-                <li class="nav-item "><a class="nav-link" href="/product/new">New survey</a></li>
+                <li class="nav-item "><a class="nav-link" href="/user/list">Results</a></li>
+                <li class="nav-item "><a class="nav-link" href="/user/new">New survey</a></li>
             </ul>
         </div>
     </div>
@@ -67,28 +48,9 @@
             <br /><br />
             <h4>Lets start !</h4>
             <br />
-            <a class="btn btn-default" href="/product/new">Start new survey</a>
+            <a class="btn btn-default" href="/user/new">Start new survey</a>
             <br />
-            <!--form method="post" action="/product/new">
-                <table class="table table-hover">
-
-                    <!--tr>
-                        <td>Give survey id: <input type="text" name="addQuestionspage" /></td>
-                    </tr>
-
-                </table>
-                <button type="submit" class="btn btn-default">Add questions to survey</button>
-            </form-->
-
-
-            <form method="post" action="/product/list">
-                <table class="table table-hover">
-
-                    <!--tr>
-                        <td>Give survey id: <input type="text" name="AnswerId" /></td>
-                    </tr-->
-
-                </table>
+            <form method="post" action="/user/list">
                 <br />
                 <h4>Lets check current score !</h4>
                 <br />

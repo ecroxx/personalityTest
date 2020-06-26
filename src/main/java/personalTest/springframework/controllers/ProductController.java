@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import personalTest.springframework.services.QuestionsService;
-import personalTest.springframework.services.QuestionsServiceImpl;
 
 import javax.validation.Valid;
 
@@ -56,84 +55,60 @@ public class ProductController {
         }
 
 
-        return "product/index";
+        return "user/index";
     }
 
 
     @RequestMapping("/")
     public String redirToList(){
-        return "redirect:/product/list";
+        return "redirect:/user/list";
     }
 
-    @RequestMapping({"/product/list", "/product"})
+    @RequestMapping({"/user/list", "/user"})
     public String listProducts(Model model){
         model.addAttribute("products", productService.listAll());
-     /*   model.addAttribute("avarage", productService.listAll().stream().mapToDouble(Product::getAvg).average().getAsDouble());
-        model.addAttribute("avarageInfrastructure",productService.listAll().stream().mapToDouble(Product::getAvgInfrastructure).average().getAsDouble());
-        model.addAttribute("avarageCommunity",productService.listAll().stream().mapToDouble(Product::getAvgCommunity).average().getAsDouble());
-        model.addAttribute("avarageCoparate",productService.listAll().stream().mapToDouble(Product::getAvgCooprate).average().getAsDouble());
-        model.addAttribute("avarageTransportation",productService.listAll().stream().mapToDouble(Product::getAvgTransportation).average().getAsDouble());
-     */
-        return "product/list";
+        return "user/list";
     }
 
-    @RequestMapping("/product/show/{id}")
+    @RequestMapping("/user/show/{id}")
     public String getProduct(@PathVariable String id, Model model){
         model.addAttribute("product", productService.getById(id));
-        return "product/show";
+        return "user/show";
     }
 
-    @RequestMapping("product/edit/{id}")
+    @RequestMapping("user/edit/{id}")
     public String edit(@PathVariable String id, Model model){
         Product product = productService.getById(id);
         ProductForm productForm = productToProductForm.convert(product);
 
         model.addAttribute("productForm", productForm);
-        return "product/productform";
+        return "user/productform";
     }
 
-    @RequestMapping("/product/new")
+    @RequestMapping("/user/new")
     public String newProduct(Model model){
         model.addAttribute("productForm", new ProductForm());
-        return "product/productform";
+        return "user/productform";
     }
 
-    @RequestMapping(value = "/product", method = RequestMethod.POST)
+    @RequestMapping(value = "/user", method = RequestMethod.POST)
     public String saveOrUpdateProduct(@Valid ProductForm productForm, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
-            return "product/productform";
+            return "user/productform";
         }
 
         Product savedProduct = productService.saveOrUpdateProductForm(productForm);
 
-        return "redirect:/product/show/" + savedProduct.getId();
+        return "redirect:/user/show/" + savedProduct.getId();
     }
 
-    @RequestMapping("/product/delete/{id}")
+    @RequestMapping("/user/delete/{id}")
     public String delete(@PathVariable String id){
         productService.delete(id);
-        return "redirect:/product/list";
+        return "redirect:/user/list";
     }
 
-   /* @RequestMapping("/product/survey")
-    public String getSurvey( Model model){
-        //model.addAttribute("product", productService.getById(id));
-        return "redirect:/product/thanks";
-    }
-
-    @RequestMapping(value = "/product/thanks", method = RequestMethod.POST)
-    public String saveOrUpdateSurvey(@Valid ProductForm productForm, BindingResult bindingResult){
-
-        if(bindingResult.hasErrors()){
-            return "product/productform";
-        }
-
-        Product savedProduct = productService.saveOrUpdateProductForm(productForm);
-
-        return "/product/thanks" + savedProduct.getId();
-    }
-    */
 
 
 
