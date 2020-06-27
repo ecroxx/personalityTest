@@ -6,11 +6,13 @@ Moreover in this project configuration datas are kept in application which is no
 
 ---Technology Stack---
 
-Java / Spring Framework
+Java / Spring Framework(Boot)  
+Hibernate / Spring Data JPA
 Thymeleaf
 Maven
 Javascript
 Bootstrap/Html/Css
+Tomcat
 
 ----- DATABASE -------
 Mongo DB Cloud
